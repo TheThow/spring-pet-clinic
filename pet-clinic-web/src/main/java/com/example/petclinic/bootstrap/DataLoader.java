@@ -28,6 +28,15 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        int count = petTypeService.findAll().size();
+
+        if (count == 0) {
+            loadDemoData();
+        }
+
+    }
+
+    void loadDemoData() {
         PetType dogPetType = new PetType();
         dogPetType.setName("dog");
 
