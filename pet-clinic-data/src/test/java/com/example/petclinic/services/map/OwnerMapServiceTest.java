@@ -11,21 +11,21 @@ import static org.junit.jupiter.api.Assertions.*;
 class OwnerMapServiceTest {
 
     OwnerMapService ownerMapService;
-    final Long ownerId = 1L;
-    final Long owner2Id = 2L;
+    final Long OWNER_ID_1 = 1L;
+    final Long OWNER_ID_2 = 2L;
 
-    final String ownerName = "Johnson";
+    final String OWNER_NAME_1 = "Johnson";
 
     @BeforeEach
     void setUp() {
         ownerMapService = new OwnerMapService(new PetTypeMapService(), new PetMapService());
 
         Owner owner = new Owner();
-        owner.setId(ownerId);
-        owner.setLastName(ownerName);
+        owner.setId(OWNER_ID_1);
+        owner.setLastName(OWNER_NAME_1);
 
         Owner owner2 = new Owner();
-        owner2.setId(owner2Id);
+        owner2.setId(OWNER_ID_2);
         owner2.setLastName("Thompson");
 
         ownerMapService.save(owner);
@@ -34,8 +34,8 @@ class OwnerMapServiceTest {
 
     @Test
     void findById() {
-        Owner owner = ownerMapService.findById(ownerId);
-        assertEquals(ownerId, owner.getId());
+        Owner owner = ownerMapService.findById(OWNER_ID_1);
+        assertEquals(OWNER_ID_1, owner.getId());
     }
 
     @Test
@@ -54,7 +54,7 @@ class OwnerMapServiceTest {
 
     @Test
     void saveExisting() {
-        ownerMapService.save(ownerMapService.findById(ownerId));
+        ownerMapService.save(ownerMapService.findById(OWNER_ID_1));
         Set<Owner> all = ownerMapService.findAll();
 
         assertEquals(2, all.size());
@@ -68,26 +68,26 @@ class OwnerMapServiceTest {
 
     @Test
     void deleteById() {
-        ownerMapService.deleteById(ownerId);
+        ownerMapService.deleteById(OWNER_ID_1);
         Set<Owner> all = ownerMapService.findAll();
 
-        assertEquals(0, all.stream().filter(obj -> obj.getId().equals(ownerId)).count());
+        assertEquals(0, all.stream().filter(obj -> obj.getId().equals(OWNER_ID_1)).count());
     }
 
     @Test
     void delete() {
-        Owner owner = ownerMapService.findById(ownerId);
+        Owner owner = ownerMapService.findById(OWNER_ID_1);
         ownerMapService.delete(owner);
         Set<Owner> all = ownerMapService.findAll();
 
-        assertEquals(0, all.stream().filter(obj -> obj.getId().equals(ownerId)).count());
+        assertEquals(0, all.stream().filter(obj -> obj.getId().equals(OWNER_ID_1)).count());
     }
 
     @Test
     void findByLastName() {
-        Owner owner = ownerMapService.findByLastName(ownerName);
+        Owner owner = ownerMapService.findByLastName(OWNER_NAME_1);
 
         assertNotNull(owner);
-        assertEquals(ownerName, owner.getLastName());
+        assertEquals(OWNER_NAME_1, owner.getLastName());
     }
 }
