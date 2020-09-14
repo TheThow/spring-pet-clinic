@@ -3,6 +3,7 @@ package com.example.petclinic.controllers;
 import com.example.petclinic.services.OwnerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequestMapping("/owners")
@@ -15,7 +16,7 @@ public class OwnerController {
         this.ownerService = ownerService;
     }
 
-    @RequestMapping({"", "/", "/index", "/index.html"})
+    @GetMapping({"", "/", "/index", "/index.html"})
     public String listOwners(Model model) {
 
         model.addAttribute("owners", ownerService.findAll());
@@ -23,7 +24,7 @@ public class OwnerController {
         return "owners/index";
     }
 
-    @RequestMapping("/find")
+    @GetMapping("/find")
     public String findOwners() {
         return "notimplemented";
     }
