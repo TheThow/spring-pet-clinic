@@ -35,7 +35,7 @@ public class OwnerController {
     }
 
     @GetMapping({"/", ""})
-    public String processFindForm(Owner owner, BindingResult result, Model model) {
+    public String processFindForm(@ModelAttribute("owner") Owner owner, BindingResult result, Model model) {
 
         // allow parameterless GET request for /owners to return all records
         if (owner.getLastName() == null) {
@@ -74,7 +74,7 @@ public class OwnerController {
     }
 
     @PostMapping("/new")
-    public String createOwner(@Validated Owner owner, BindingResult result) {
+    public String createOwner(@ModelAttribute("owner") @Validated Owner owner, BindingResult result) {
         if (result.hasErrors()) {
             return "/owners/createOrUpdateOwner";
         }
@@ -92,7 +92,7 @@ public class OwnerController {
     }
 
     @PostMapping("/{ownerId}/edit")
-    public String processUpdateOwnerForm(@Validated Owner owner, BindingResult result, @PathVariable Long ownerId) {
+    public String processUpdateOwnerForm(@ModelAttribute("owner") @Validated Owner owner, BindingResult result, @PathVariable Long ownerId) {
         if (result.hasErrors()) {
             return "/owners/createOrUpdateOwner";
         }
