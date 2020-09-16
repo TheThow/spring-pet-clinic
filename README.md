@@ -2,3 +2,5 @@
 
 # Spring Pet Clinic
 Demo Application inspired by the spring pet clinic for practice
+
+![detail page](https://github.com/TheThow/spring-pet-clinic/blob/master/img/owner_info.png?raw=true)
