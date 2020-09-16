@@ -63,7 +63,7 @@ public class VisitController {
         pet.getVisits().add(visit);
         petService.save(pet);
 
-        return "redirect:/owners/{ownerId}";
+        return "redirect:/owners/" + pet.getOwner().getId();
     }
 
 }
